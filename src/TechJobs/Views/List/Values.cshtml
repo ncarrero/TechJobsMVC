@@ -1,10 +1,19 @@
-﻿<h1>@ViewBag.title</h1>
+﻿<!--similar format as index, but various links are presented in a table and URLs have two asp-route-*
+    attributes, one for column and one for value-->
+<!--example URL for locations list: /List/Jobs?column=location&value=Kansas%20City-->
+<!--see controller method Jobs in ListController and Jobs view in List-->
+<!--to insert space in URL using Razor, use %20 in place of the space-->
+<!--cllicking on the links will display list of jobs in given location via Jobs action method 
+    (View template for Jobs needs some work)-->
+
+<h1>@ViewBag.title</h1>
 
 <table>
-@for (int i= 0; i < ViewBag.items.Count; i++)
-{
-    <tr class="@( i % 2 == 0 ? "even" : "odd" ) ">
-        <td><a asp-controller="List" asp-action="Jobs" asp-route-column="@ViewBag.column" asp-route-value="@ViewBag.items[i]">@ViewBag.items[i]</a></td>
-    </tr>  
-}   
+    @for (int i = 0; i < ViewBag.items.Count; i++)
+    {
+        <tr class="@( i % 2 == 0 ? "even" : "odd" ) ">
+            <td><a asp-controller="List" asp-action="Jobs" asp-route-column="@ViewBag.column" asp-route-value="@ViewBag.items[i]">@ViewBag.items[i]</a></td>
+        </tr>
+
+    }
 </table>

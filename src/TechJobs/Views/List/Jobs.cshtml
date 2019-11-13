@@ -1,7 +1,28 @@
-﻿<h1>@ViewBag.title</h1>
+﻿<!--URL: "/List/Values?column=all"-->
+
+<h1>@ViewBag.title</h1>
 
 <h3>@ViewBag.jobs.Count Result(s)</h3>
 
-@{ 
-    // TODO #3 - Use the same list display from Views/Search/Index.cshtml 
+@{
+    // TODO #3 - Use the same list display from Views/Search/Index.cshtml
+    //to display full job listings just like search results page
+    //add code to appropriate view template so page displays
+    //jobs with same structure as search results (AKA css "job-listing" styling)
+    //NOTE: can use similar code from search results page, but make sure to
+    //account for name of jobs list passed in from controller, which may or
+    //may not be different depending on how code is structured
+}
+
+@foreach (Dictionary<string, string> job in ViewBag.jobs)
+{
+    <table class="job-listing">
+        @foreach (KeyValuePair<string, string> field in job)
+        {
+            <tr>
+                <th>@field.Key</th>
+                <td>@field.Value</td>
+            </tr>
+        }
+    </table>
 }

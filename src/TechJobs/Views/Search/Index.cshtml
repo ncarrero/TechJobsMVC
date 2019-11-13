@@ -1,4 +1,6 @@
-﻿<h1>@ViewBag.title</h1>
+﻿<!--Search View Index-->
+
+<h1>@ViewBag.title</h1>
 
 <form action="/Search/Results">
     <h2>Search by:</h2>
@@ -6,12 +8,14 @@
     <p>
         @foreach (KeyValuePair<string, string> column in ViewBag.columns)
         {
+            <!--start of search form giving user option to search by column or across all columns-->
+            <!--will be used to display all search results in addition to displaying form-->
             <span>
                 <input type="radio"
                        name="searchType"
                        id="@column.Key"
-                       value="@column.Key" 
-                       checked="@column.Key == 'all''"/>
+                       value="@column.Key"
+                       checked="@column.Key == 'all''" />
                 <label for="@column.Key">@column.Value</label>
             </span>
         }
@@ -32,5 +36,20 @@
 
     <h3>@ViewBag.jobs.Count Result(s)</h3>
 
-    // TODO #2 - Loop over jobs dictionary and display all job fields 
+    // TODO #2 - Loop over jobs dictionary from controller and display all job fields
+    // with each job in its own table, with one job field per row
+    // add css class "job-listing" to each of the tables to get styling
+
+@foreach (Dictionary<string, string> job in ViewBag.jobs)
+{
+<table class="job-listing">
+    @foreach (KeyValuePair<string, string> field in job)
+    {
+    <tr>
+        <th>@field.Key</th>
+        <td>@field.Value</td>
+    </tr>
+    }
+</table>
+}
 }

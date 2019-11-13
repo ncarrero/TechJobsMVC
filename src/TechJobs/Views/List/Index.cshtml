@@ -1,9 +1,17 @@
-﻿<h1>@ViewBag.Title</h1>
+﻿<!--displays list options using data from columnChoices dictionary passed in ViewBag.columns-->
+
+<h1>@ViewBag.Title</h1>
 <h2>View All</h2>
 <ul>
     @foreach (KeyValuePair<string, string> column in ViewBag.columns) {
-        <li>
-            <a asp-controller="List" asp-action="Values" asp-route-column="@column.Key">@column.Value</a>
-        </li>
+    <li>
+        <!--"asp-route-*" adds a query parameter with a key equal to whatever the third slot of
+        the attribute name is, in this case he * is represented by the column.Key-->
+        <a asp-controller="List" asp-action="Values" asp-route-column="@column.Key">@column.Value</a>
+        <!--when user clicks on link (column choice), they will be routed to Values action in List Controller, 
+            which looks for these parameters
+            ex: if you click on locations column link, this will send a request resulting in a list of 
+            all the locations in the data set job_data.csv-->
+    </li>
     }
 </ul>
