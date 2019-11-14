@@ -65,11 +65,11 @@ namespace TechJobs.Controllers
         {
             
             //take in 2 query parameters, column and value
-            //searching for particular value in particular column and then display jobs that match
+            //searches for particular value in particular column and then display jobs that match
             //this result will only happen when user clicks on link within one of the views,
             //rather than submitting a form
 
-            //** use this for one of the TODOS **
+            //cannot use this method for search "all"
             List<Dictionary<String, String>> jobs = JobData.FindByColumnAndValue(column, value);
             ViewBag.title = "Jobs with " + columnChoices[column] + ": " + value;
             ViewBag.jobs = jobs;

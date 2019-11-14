@@ -59,8 +59,8 @@ namespace TechJobs.Models
                 foreach (string key in row.Keys)
                 {
                     string aValue = row[key];
-
-                    if (aValue.ToLower().Contains(value.ToLower()))
+                    //original code: if (aValue.ToLower().Contains(value.ToLower())
+                    if (aValue.ToLower().Contains(value.ToLower()) || value == "")
                     {
                         jobs.Add(row);
 
